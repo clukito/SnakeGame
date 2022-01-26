@@ -13,26 +13,28 @@ export default function App() {
     display("hey snake ppl");
 
     //Snake facing forward
-    const snake1 = new Snake();
-    snake1.move(10);
+    const snake1 = new Snake("Green");
+    snake1.move(60);
     snake1.turn();
     snake1.move(20);
     snake1.turn();
 
     //Snake facing backward
-    const snake2 = new Snake();
+    const snake2 = new Snake("Maroon");
     snake2.turn();
     snake2.move(20);
     snake2.move(5);
 
     display(
-      "Snake 1 is facing",
+      snake1.color,
+      "snake is facing",
       snake1.direction,
       "on position",
       snake1.position
     );
     display(
-      "Snake 2 is facing",
+      snake2.color,
+      "snake is facing",
       snake2.direction,
       "on position",
       snake2.position

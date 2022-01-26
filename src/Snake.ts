@@ -3,10 +3,12 @@
 class Snake {
   private currentPosition: number;
   private currentDirection: number;
+  public color: string;
 
-  constructor() {
+  constructor(snakeColor: string) {
     this.currentPosition = 0;
     this.currentDirection = 1;
+    this.color = snakeColor;
   }
 
   move(square: number) {
