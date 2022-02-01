@@ -1,29 +1,25 @@
 import "./styles.css";
-// import Snake from "./Snake.ts";
 import display from "./display";
 import { useEffect } from "react";
 
 import Snake from "./Snake";
 
 export default function App() {
-  // Add Snake Tests with display below
   useEffect(() => {
-    // Include your display statements to test below
     document.getElementById("output")!.innerText = "OUTPUT:\n";
     display("hey snake ppl");
 
-    //Snake facing forward
+    // Snake 1 - Green
     const snake1 = new Snake("Green");
-    snake1.move(60);
-    snake1.turn();
-    snake1.move(20);
-    snake1.turn();
-
-    //Snake facing backward
-    const snake2 = new Snake("Maroon");
-    snake2.turn();
-    snake2.move(20);
-    snake2.move(5);
+    snake1.move();
+    snake1.move();
+    snake1.turnLeft();
+    snake1.move();
+    snake1.turnLeft();
+    snake1.move();
+    snake1.turnRight();
+    snake1.move();
+    snake1.move();
 
     display(
       snake1.color,
@@ -32,6 +28,13 @@ export default function App() {
       "on position",
       snake1.position
     );
+
+    // Snake 2 - Maroon
+    const snake2 = new Snake("Maroon");
+    snake2.turnRight();
+    snake2.move();
+    snake2.move();
+
     display(
       snake2.color,
       "snake is facing",
