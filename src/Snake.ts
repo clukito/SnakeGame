@@ -7,9 +7,6 @@ const myMap = new Map<number, string>([
   [270, "down"]
 ]);
 
-let trial = myMap.get(0);
-console.log(trial);
-
 /** Main class representing the snake */
 class Snake {
   private currentPosition: Point;
@@ -22,7 +19,7 @@ class Snake {
    */
   constructor(snakeColor: string) {
     this.currentPosition = new Point(0, 0); // composition
-    this.currentDirection = 90; // default facing front
+    this.currentDirection = 90;
     this.color = snakeColor;
   }
 
@@ -30,26 +27,26 @@ class Snake {
    * moves the snake 1 box at a time
    */
   // right = 0, front = 90, left = 180, down = 270
-  public move() {
+  public move(box: number = 1) {
     if (this.currentDirection === 0) {
       this.currentPosition = new Point(
-        this.currentPosition.x + 1,
+        this.currentPosition.x + box,
         this.currentPosition.y
       );
     } else if (this.currentDirection === 90) {
       this.currentPosition = new Point(
         this.currentPosition.x,
-        this.currentPosition.y + 1
+        this.currentPosition.y + box
       );
     } else if (this.currentDirection === 180) {
       this.currentPosition = new Point(
-        this.currentPosition.x - 1,
+        this.currentPosition.x - box,
         this.currentPosition.y
       );
     } else {
       this.currentPosition = new Point(
         this.currentPosition.x,
-        this.currentPosition.y - 1
+        this.currentPosition.y - box
       );
     }
   }

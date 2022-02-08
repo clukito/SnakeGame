@@ -1,19 +1,18 @@
 import Snake from "./Snake";
 
-// I have no idea what I am doing here
-
 class WorldModel {
-  private _update: number;
-  private sn: Snake;
+  private snake: Snake;
 
-  constructor(update: number, s: Snake) {
-    this._update = update;
-    this.sn = s;
+  constructor(sn: Snake) {
+    this.snake = sn;
   }
 
-  public update(steps): number {
-    return this._update;
+  public update(steps: number) {
+    this.snake.move(steps);
+  }
+
+  public get s() {
+    return this.snake;
   }
 }
-
 export default WorldModel;
