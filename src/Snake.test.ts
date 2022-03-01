@@ -15,14 +15,9 @@ const moveSnakes = (times: number, turn: boolean = false) => {
     if (turn) {
       const numSquares3 = Math.floor(Math.random() * 100);
       const numSquares4 = Math.floor(Math.random() * 10);
-      greenSnake.turn();
-      maroonSnake.turn();
       maroonSnake.move(numSquares3);
       totalSquares -= numSquares3;
       greenSnake.move(numSquares3);
-      maroonSnake.turn();
-      maroonSnake.turn();
-      maroonSnake.turn();
       maroonSnake.move(numSquares4);
       totalSquares += numSquares4;
     }

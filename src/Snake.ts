@@ -36,7 +36,7 @@ class Snake {
     } else if (this.currentDirection === 90) {
       this.currentPosition = new Point(
         this.currentPosition.x,
-        this.currentPosition.y + box
+        this.currentPosition.y - box // because top left is 0,0
       );
     } else if (this.currentDirection === 180) {
       this.currentPosition = new Point(
@@ -46,7 +46,7 @@ class Snake {
     } else {
       this.currentPosition = new Point(
         this.currentPosition.x,
-        this.currentPosition.y - box
+        this.currentPosition.y + box // look at line 39
       );
     }
   }
@@ -55,22 +55,15 @@ class Snake {
    * turns the snake to the left
    */
   turnLeft() {
-    if (this.currentDirection === 270) {
-      this.currentDirection = 0;
-    } else {
-      this.currentDirection = this.currentDirection + 90;
-    }
+    this.currentDirection = (this.currentDirection + 90) % 360;
   }
 
   /**
    * turns the snake to the right
    */
+  // maybe do modulus ??
   turnRight() {
-    if (this.currentDirection === 0) {
-      this.currentDirection = 270;
-    } else {
-      this.currentDirection = this.currentDirection - 90;
-    }
+    this.currentDirection = (this.currentDirection - 90) % 360;
   }
 
   public get position() {
