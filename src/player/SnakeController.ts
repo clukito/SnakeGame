@@ -1,6 +1,6 @@
-import Snake from "./Snake";
-import WorldModel from "./WorldModel";
-import Point from "./Point";
+import Snake from "../snake/Snake";
+import WorldModel from "../canvas/WorldModel";
+import Point from "../snake/Point";
 
 class SnakeController {
   private slitherer: Snake;

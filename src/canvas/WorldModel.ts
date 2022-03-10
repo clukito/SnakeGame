@@ -1,4 +1,4 @@
-import Snake from "./Snake";
+import Snake from "../snake/Snake";
 
 class WorldModel {
   private snake: Snake;
@@ -15,7 +15,8 @@ class WorldModel {
     this.snake.move(steps);
   }
 
-  public get s() {
+  // change the name!! instead of s
+  public get worldsnake() {
     return this.snake;
   }
 

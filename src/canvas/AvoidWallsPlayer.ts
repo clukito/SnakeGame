@@ -1,12 +1,6 @@
-import Snake from "./Snake";
-import Player from "./Player";
-import SnakeController from "./SnakeController";
+import Player from "../player/Player";
 
 class AvoidWallsPlayer extends Player {
-  constructor(sc: SnakeController) {
-    super(sc);
-  }
-
   makeTurn() {
     // left side
     if (
@@ -34,8 +28,6 @@ class AvoidWallsPlayer extends Player {
       this.snakeController.turnSnakeLeft();
     } else if (
       this.snakeController.snakeDirection === "down" &&
-      this.snakeController.snakePosition.x >=
-        this.snakeController.worldWidth / 2 &&
       this.snakeController.snakePosition.y === this.snakeController.worldHeight
     ) {
       this.snakeController.turnSnakeRight();
@@ -51,7 +43,7 @@ class AvoidWallsPlayer extends Player {
     ) {
       this.snakeController.turnSnakeRight();
     } else if (
-      this.snakeController.snakeDirection === "left" &&
+      this.snakeController.snakeDirection === "right" &&
       this.snakeController.snakePosition.x ===
         this.snakeController.worldWidth &&
       this.snakeController.snakePosition.y >=
@@ -67,7 +59,12 @@ class AvoidWallsPlayer extends Player {
       this.snakeController.snakePosition.y === 0
     ) {
       this.snakeController.turnSnakeRight();
-    } else {
+    } else if (
+      this.snakeController.snakeDirection === "up" &&
+      this.snakeController.snakePosition.x >=
+        this.snakeController.worldHeight / 2 &&
+      this.snakeController.snakePosition.y === 0
+    ) {
       this.snakeController.turnSnakeLeft();
     }
   }

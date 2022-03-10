@@ -12,3 +12,7 @@
   text-align: left;
   padding: 5px;
 }
+
+canvas {
+  background-color: pink;
+}
