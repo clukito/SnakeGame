@@ -5,6 +5,7 @@ import checkerboard from "./canvas/checkerboard.jpg";
 
 import Snake from "./snake/Snake";
 import WorldModel from "./canvas/WorldModel";
+import CanvasWorldView from "./canvas/CanvasWorldView";
 
 export default function App() {
   useEffect(() => {
@@ -14,13 +15,13 @@ export default function App() {
     gameContext.fillRect(5, 10, 15, 20);
     gameContext.fillRect(5, 40, 15, 20);
 
-    const gameCanvas = document.getElementById("game") as HTMLCanvasElement;
-    const ctx = gameCanvas.getContext("2d");
-    const img = new Image(256, 256);
-    img.src = checkerboard;
-    img.onload = () => {
-      ctx?.drawImage(img, 0, 0, gameCanvas.width, gameCanvas.height);
-    };
+    // const gameCanvas = document.getElementById("game") as HTMLCanvasElement;
+    // const ctx = gameCanvas.getContext("2d");
+    // const img = new Image(256, 256);
+    // img.src = checkerboard;
+    // img.onload = () => {
+    //   ctx?.drawImage(img, 0, 0, gameCanvas.width, gameCanvas.height);
+    // };
 
     // Snake
     document.getElementById("output")!.innerText = "OUTPUT:\n";
@@ -72,6 +73,10 @@ export default function App() {
       "on position",
       snake1.position
     );
+
+    const view1 = new CanvasWorldView(3);
+    CelSnake.view = view1;
+    CelSnake.update(50);
   }, []);
 
   return (

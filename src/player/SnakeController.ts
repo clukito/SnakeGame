@@ -2,16 +2,25 @@ import Snake from "../snake/Snake";
 import WorldModel from "../canvas/WorldModel";
 import Point from "../snake/Point";
 
+/**
+ * determines what a player can or cant do - methods declared below
+ * what a player (AI or human) uses to control its snake or get info about its worldmodel
+ * the 'arrows' - video game sticks.
+ * contains the lOCATION of your snake inside the world in respect to other snakes
+ * players cant tell the snake to move (to speed up)
+ * can only change the snake's directions
+ */
 class SnakeController {
   private slitherer: Snake;
   private snakeWorld: WorldModel;
 
-  constructor(slitherer: Snake, snakeWorld: WorldModel) {
-    this.snakeWorld = snakeWorld;
-    this.slitherer = slitherer;
+  constructor(slitherers: Snake, snakeWorlds: WorldModel) {
+    this.snakeWorld = snakeWorlds;
+    this.slitherer = slitherers;
   }
 
-  turnSnakeLeft() {
+  /** uses turn methods from the snake class, but affecting only on slitherer */
+  turnSnakeLeft(): void {
     this.slitherer.turnLeft();
   }
 
@@ -19,6 +28,7 @@ class SnakeController {
     this.slitherer.turnRight();
   }
 
+  /** gets a specific snake's position - slitherer from snake class */
   public get snakePosition(): Point {
     return this.slitherer.position;
   }

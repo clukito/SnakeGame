@@ -1,5 +1,6 @@
 import Point from "./Point";
 
+/** maps the direction (num) into a stirng */
 const myMap = new Map<number, string>([
   [0, "right"],
   [90, "up"],
@@ -7,7 +8,10 @@ const myMap = new Map<number, string>([
   [270, "down"]
 ]);
 
-/** Main class representing the snake */
+/**
+ * a class representing the snake
+ * each snake in the worldmodel will have this property
+ */
 class Snake {
   private currentPosition: Point;
   private currentDirection: number;
@@ -15,18 +19,19 @@ class Snake {
 
   /**
    * Create a snake
-   * @param snakeColor - the color of the snake
+   * @param snakeColor - the color of the snake (universal)
    */
   constructor(snakeColor: string) {
     this.currentPosition = new Point(0, 0); // composition
-    this.currentDirection = 90;
+    this.currentDirection = 270;
     this.color = snakeColor;
   }
 
   /**
    * moves the snake 1 box at a time
+   * right = 0, front = 90, left = 180, down = 270
+   * top left is (0,0)
    */
-  // right = 0, front = 90, left = 180, down = 270
   public move(box: number = 1) {
     if (this.currentDirection === 0) {
       this.currentPosition = new Point(
@@ -43,33 +48,31 @@ class Snake {
         this.currentPosition.x - box,
         this.currentPosition.y
       );
-    } else {
+    } else if (this.currentDirection === 270) {
       this.currentPosition = new Point(
         this.currentPosition.x,
-        this.currentPosition.y + box // look at line 39
+        this.currentPosition.y + box // look at line 40
       );
     }
   }
 
-  /**
-   * turns the snake to the left
-   */
+  /** turns the snake to the left */
   turnLeft() {
     this.currentDirection = (this.currentDirection + 90) % 360;
   }
 
-  /**
-   * turns the snake to the right
-   */
-  // maybe do modulus ??
+  /** turns the snake to the right */
   turnRight() {
     this.currentDirection = (this.currentDirection - 90) % 360;
   }
 
+  /** a getter for private propery of currentPosition
+   * user 'cant' change the position of the user's snake */
   public get position() {
     return this.currentPosition;
   }
 
+  /** a getter for private propery of currentDirection */
   public get direction() {
     return myMap.get(this.currentDirection);
   }

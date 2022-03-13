@@ -1,6 +1,13 @@
 import Player from "../player/Player";
 
+/**
+ * extends player's make turn method
+ * no constructor bc it's useless - extends player's constuctor */
 class AvoidWallsPlayer extends Player {
+  /**
+   * abstract method from player class
+   * turns the snake automatically so it doesnt crash
+   */
   makeTurn() {
     // left side
     if (
@@ -32,7 +39,6 @@ class AvoidWallsPlayer extends Player {
     ) {
       this.snakeController.turnSnakeRight();
     }
-
     // right
     else if (
       this.snakeController.snakeDirection === "right" &&
