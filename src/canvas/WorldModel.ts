@@ -32,7 +32,6 @@ class WorldModel {
    */
   public update(box: number) {
     this.snake.move(box);
-    console.log("hei");
     if (this.worldview != null) {
       this.worldview.display(this);
     }

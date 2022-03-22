@@ -19,10 +19,13 @@ class Snake {
 
   /**
    * Create a snake
+   * snake's initial position is (20,20)
+   * (0,0) is top left corner
+   * snake's initial direction is facing down
    * @param snakeColor - the color of the snake (universal)
    */
   constructor(snakeColor: string) {
-    this.currentPosition = new Point(0, 0); // composition
+    this.currentPosition = new Point(20, 20); // composition
     this.currentDirection = 270;
     this.color = snakeColor;
   }

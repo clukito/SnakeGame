@@ -1,44 +1,103 @@
 import Snake from "./Snake";
 
-const moveSnakes = (times: number, turn: boolean = false) => {
-  const greenSnake = new Snake("green");
-  const maroonSnake = new Snake("maroon");
-  let totalSquares = 0;
-
-  for (let i = 0; i < times; i++) {
-    const numSquares1 = Math.floor(Math.random() * 100);
-    const numSquares2 = Math.floor(Math.random() * 100);
-    greenSnake.move(numSquares1);
-    maroonSnake.move(numSquares2);
-    greenSnake.move(5);
-    totalSquares += numSquares2;
-    if (turn) {
-      const numSquares3 = Math.floor(Math.random() * 100);
-      const numSquares4 = Math.floor(Math.random() * 10);
-      maroonSnake.move(numSquares3);
-      totalSquares -= numSquares3;
-      greenSnake.move(numSquares3);
-      maroonSnake.move(numSquares4);
-      totalSquares += numSquares4;
-    }
-  }
-
-  return { actual: maroonSnake.position, expected: totalSquares };
-};
-
-describe("Snake Tests", function () {
-  const tests = [0, 3, 10, 4].map((num, index) => moveSnakes(num, index > 2));
-
-  const testDescriptions = [
-    "starts with the correct position of 0",
-    "has the correct position after 3+ random moves",
-    "has the correct position after 10+ random moves",
-    "has the correct position after 4+ random moves with turns"
-  ];
-
-  testDescriptions.forEach((description, index) => {
-    it(description, () =>
-      expect(tests[index].expected).toBe(tests[index].actual)
-    );
+describe("Snake", function () {
+  it("has a working move method", function () {
+    let redSnake = new Snake("red");
+    expect(redSnake.move).toBeDefined();
   });
+
+  it("moves correctly", function () {
+    let c1 = new Snake("red");
+    let c2 = new Snake("blue");
+    c1.move(10);
+    c1.move(5);
+    c2.move(4);
+    c2.move(7);
+    expect(c1.position.toString()).toBe("(20,35)");
+    expect(c2.position.toString()).toBe("(20,31)");
+  });
+
+  it("has a working turn left method", function () {
+    let redSnake = new Snake("red");
+    expect(redSnake.turnLeft).toBeDefined();
+  });
+  it("has a working turn right method", function () {
+    let redSnake = new Snake("red");
+    expect(redSnake.turnRight).toBeDefined();
+  });
+  it("turns correctly", function () {
+    let c1 = new Snake("red");
+    let c2 = new Snake("blue");
+    c1.turnLeft();
+    c1.turnLeft();
+    c1.turnLeft();
+    c1.turnLeft();
+    c1.turnRight();
+    c1.turnRight();
+    c2.turnRight();
+    c2.turnRight();
+    c2.turnRight();
+    c2.turnRight();
+    c2.turnLeft();
+    expect(c1.direction).toBe("up");
+    expect(c2.direction).toBe("right");
+  });
+
+  it("moves and turns correctly", function () {
+    let c1 = new Snake("red");
+    let c2 = new Snake("blue");
+    c1.turnLeft();
+    c1.move(2);
+    c1.turnRight();
+    c1.move(4);
+    c1.turnLeft();
+    c1.move(5);
+    c1.turnRight();
+    c1.move(1);
+    c1.turnLeft();
+    c1.move(1);
+    c1.turnLeft();
+    c1.move(2);
+    c1.turnLeft();
+    c1.move(2);
+
+    c2.turnRight();
+    c2.move(2);
+    c2.turnLeft();
+    c2.move(4);
+    c2.turnRight();
+    c2.move(5);
+    c2.turnLeft();
+    c2.move(1);
+    c2.turnRight();
+    c2.move(1);
+    c2.turnRight();
+    c2.move(2);
+    c2.turnRight();
+    c2.move(2);
+    expect(c1.position.toString()).toBe("(26,18)");
+    expect(c1.direction).toBe("left");
+    expect(c2.position.toString()).toBe("(14,23)");
+    expect(c2.direction).toBe("right");
+  });
+
+  it("has a working position getter", function () {
+    let redSnake = new Snake("red");
+    expect(redSnake.position).toBeDefined();
+  });
+
+  it("has a working direction getter", function () {
+    let redSnake = new Snake("red");
+    expect(redSnake.direction).toBeDefined();
+  });
+
+  it("can be converted to a string with a color", function () {
+    let carColor = "green";
+    let c1 = new Snake(carColor);
+    c1.move(3);
+    expect(c1.color).toContain(carColor);
+  });
+  // it("title for next next test", function () {
+  //   expect(2 + 2).not.toBe(3);
+  // });
 });
