@@ -29,7 +29,6 @@ export default function App() {
 
     // Snake 1 - Green
     const snake1 = new Snake("Green");
-    console.log(snake1.color);
     snake1.move(2);
     snake1.move();
     snake1.turnLeft();

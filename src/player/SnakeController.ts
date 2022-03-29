@@ -14,9 +14,9 @@ class SnakeController {
   private slitherer: Snake;
   private snakeWorld: WorldModel;
 
-  constructor(slitherers: Snake, snakeWorlds: WorldModel) {
-    this.snakeWorld = snakeWorlds;
-    this.slitherer = slitherers;
+  constructor(aSlitherer: Snake, aSnakeWorld: WorldModel) {
+    this.slitherer = aSlitherer;
+    this.snakeWorld = aSnakeWorld;
   }
 
   /** uses turn methods from the snake class, but affecting only on slitherer */

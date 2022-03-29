@@ -1,4 +1,4 @@
-import Player from "../player/Player";
+import Player from "./Player";
 
 /**
  * extends player's make turn method

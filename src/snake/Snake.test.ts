@@ -1,8 +1,9 @@
 import Snake from "./Snake";
 
 describe("Snake", function () {
+  let redSnake = new Snake("red");
+
   it("has a working move method", function () {
-    let redSnake = new Snake("red");
     expect(redSnake.move).toBeDefined();
   });
 
@@ -18,11 +19,9 @@ describe("Snake", function () {
   });
 
   it("has a working turn left method", function () {
-    let redSnake = new Snake("red");
     expect(redSnake.turnLeft).toBeDefined();
   });
   it("has a working turn right method", function () {
-    let redSnake = new Snake("red");
     expect(redSnake.turnRight).toBeDefined();
   });
   it("turns correctly", function () {
@@ -82,22 +81,17 @@ describe("Snake", function () {
   });
 
   it("has a working position getter", function () {
-    let redSnake = new Snake("red");
     expect(redSnake.position).toBeDefined();
   });
 
   it("has a working direction getter", function () {
-    let redSnake = new Snake("red");
     expect(redSnake.direction).toBeDefined();
   });
 
-  it("can be converted to a string with a color", function () {
-    let carColor = "green";
-    let c1 = new Snake(carColor);
+  it("carries a color parameter", function () {
+    let snakeColor = "green";
+    let c1 = new Snake(snakeColor);
     c1.move(3);
-    expect(c1.color).toContain(carColor);
+    expect(c1.color).toContain(snakeColor);
   });
-  // it("title for next next test", function () {
-  //   expect(2 + 2).not.toBe(3);
-  // });
 });
