@@ -1,4 +1,4 @@
-import SnakeController from "./SnakeController";
+import SnakeController from "../controller/SnakeController";
 
 /**
  * contains one or more pure virtual member functions.

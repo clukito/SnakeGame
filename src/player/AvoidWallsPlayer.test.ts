@@ -1,8 +1,7 @@
 import AWP from "./AvoidWallsPlayer";
 import Snake from "../snake/Snake";
-import SnakeController from "./SnakeController";
+import SnakeController from "../controller/SnakeController";
 import WorldModel from "../canvas/WorldModel";
-import Player from "./Player";
 
 describe("AWP", function () {
   let redSnake = new Snake("red");

@@ -25,7 +25,19 @@ class CanvasWorldView implements IWorldView {
   display(w: WorldModel): void {
     this.worldCanvas.height = w.worldHeight * this.scalingFactor;
     this.worldCanvas.width = w.worldWidth * this.scalingFactor;
-    this.context.fillRect(5, 10, 15, 20);
+
+    this.context.fillRect(
+      w.worldsnake.position.x * this.scalingFactor,
+      w.worldsnake.position.y * this.scalingFactor,
+      this.scalingFactor * 2,
+      this.scalingFactor * 2
+    );
+    // console.log(
+    //   w.worldsnake.position.x * this.scalingFactor,
+    //   w.worldsnake.position.y * this.scalingFactor,
+    //   this.scalingFactor,
+    //   this.scalingFactor
+    // );
   }
 }
 

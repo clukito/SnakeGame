@@ -25,7 +25,7 @@ class Snake {
    * @param snakeColor - the color of the snake (universal)
    */
   constructor(snakeColor: string) {
-    this.currentPosition = new Point(20, 20); // composition
+    this.currentPosition = new Point(10, 10); // composition
     this.currentDirection = 270;
     this.color = snakeColor;
   }

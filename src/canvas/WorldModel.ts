@@ -20,8 +20,8 @@ class WorldModel {
    */
   constructor(sn: Snake) {
     this.snake = sn;
-    this.width = 500;
-    this.height = 500;
+    this.width = 100;
+    this.height = 100;
     this.worldview = null;
   }
 

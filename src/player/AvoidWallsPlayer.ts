@@ -12,16 +12,16 @@ class AvoidWallsPlayer extends Player {
     // left side
     if (
       this.snakeController.snakeDirection === "left" &&
-      this.snakeController.snakePosition.x === 0 &&
+      this.snakeController.snakePosition.x === 2 &&
       this.snakeController.snakePosition.y <
-        this.snakeController.worldHeight / 2
+        (this.snakeController.worldHeight - 1) / 2
     ) {
       this.snakeController.turnSnakeLeft();
     } else if (
       this.snakeController.snakeDirection === "left" &&
-      this.snakeController.snakePosition.x === 0 &&
+      this.snakeController.snakePosition.x === 2 &&
       this.snakeController.snakePosition.y >=
-        this.snakeController.worldHeight / 2
+        (this.snakeController.worldHeight - 1) / 2
     ) {
       this.snakeController.turnSnakeRight();
     }
@@ -29,13 +29,15 @@ class AvoidWallsPlayer extends Player {
     else if (
       this.snakeController.snakeDirection === "down" &&
       this.snakeController.snakePosition.x <
-        this.snakeController.worldWidth / 2 &&
-      this.snakeController.snakePosition.y === this.snakeController.worldHeight
+        (this.snakeController.worldWidth - 1) / 2 &&
+      this.snakeController.snakePosition.y ===
+        this.snakeController.worldHeight - 2
     ) {
       this.snakeController.turnSnakeLeft();
     } else if (
       this.snakeController.snakeDirection === "down" &&
-      this.snakeController.snakePosition.y === this.snakeController.worldHeight
+      this.snakeController.snakePosition.y ===
+        this.snakeController.worldHeight - 2
     ) {
       this.snakeController.turnSnakeRight();
     }
@@ -43,17 +45,17 @@ class AvoidWallsPlayer extends Player {
     else if (
       this.snakeController.snakeDirection === "right" &&
       this.snakeController.snakePosition.x ===
-        this.snakeController.worldWidth &&
+        this.snakeController.worldWidth - 2 &&
       this.snakeController.snakePosition.y <
-        this.snakeController.worldHeight / 2
+        (this.snakeController.worldHeight - 1) / 2
     ) {
       this.snakeController.turnSnakeRight();
     } else if (
       this.snakeController.snakeDirection === "right" &&
       this.snakeController.snakePosition.x ===
-        this.snakeController.worldWidth &&
+        this.snakeController.worldWidth - 2 &&
       this.snakeController.snakePosition.y >=
-        this.snakeController.worldHeight / 2
+        (this.snakeController.worldHeight - 1) / 2
     ) {
       this.snakeController.turnSnakeLeft();
     }
@@ -61,15 +63,15 @@ class AvoidWallsPlayer extends Player {
     else if (
       this.snakeController.snakeDirection === "up" &&
       this.snakeController.snakePosition.x <
-        this.snakeController.worldHeight / 2 &&
-      this.snakeController.snakePosition.y === 0
+        (this.snakeController.worldHeight - 1) / 2 &&
+      this.snakeController.snakePosition.y === 2
     ) {
       this.snakeController.turnSnakeRight();
     } else if (
       this.snakeController.snakeDirection === "up" &&
       this.snakeController.snakePosition.x >=
-        this.snakeController.worldHeight / 2 &&
-      this.snakeController.snakePosition.y === 0
+        (this.snakeController.worldHeight - 1) / 2 &&
+      this.snakeController.snakePosition.y === 2
     ) {
       this.snakeController.turnSnakeLeft();
     }
