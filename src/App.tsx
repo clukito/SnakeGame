@@ -68,17 +68,19 @@ export default function App() {
 
     // testing
     const snake1 = new Snake("Green");
+    const snake2 = new Snake("Red");
     const earth = new WorldModel(snake1);
     const control1 = new SnakeController(snake1, earth);
+    const control2 = new SnakeController(snake2, earth);
     const view1 = new CanvasWorldView(2);
     const aI1 = new AvoidWallsPlayer(control1);
-    const aI2 = new AvoidWallsPlayer(control1);
+    const aI2 = new AvoidWallsPlayer(control2);
     const human1 = new HumanPlayer(control1, new LRKeyInputHander());
-    const human2 = new HumanPlayer(control1, new LRKeyInputHander());
+    const human2 = new HumanPlayer(control2, new LRKeyInputHander());
     const game1 = new GameController(earth);
 
-    game1.player1 = aI1;
-    game1.player2 = aI2;
+    game1.player1 = human1;
+    game1.player2 = aI1;
     earth.view = view1;
     earth.update(50);
 

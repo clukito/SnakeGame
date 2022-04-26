@@ -24,7 +24,7 @@ class Snake {
    * snake's initial direction is facing down
    * @param snakeColor - the color of the snake (universal)
    */
-  constructor(snakeColor: string) {
+  constructor(snakeColor: string, startPosition, size) {
     this.currentPosition = new Point(10, 10); // composition
     this.currentDirection = 270;
     this.color = snakeColor;
@@ -57,16 +57,23 @@ class Snake {
         this.currentPosition.y + box // look at line 40
       );
     }
-  }
+  } // CHANGE THIS WHEN IT'S DOWN
 
-  /** turns the snake to the left */
-  turnLeft() {
-    this.currentDirection = (this.currentDirection + 90) % 360;
+  /** turns the snake to the left */ turnLeft() {
+    if (this.currentDirection === 270) {
+      this.currentDirection = (360 + (this.currentDirection - 90)) % 360;
+    } else {
+      this.currentDirection = (this.currentDirection + 90) % 360;
+    }
   }
 
   /** turns the snake to the right */
   turnRight() {
-    this.currentDirection = (this.currentDirection - 90) % 360;
+    if (this.currentDirection === 270) {
+      this.currentDirection = (this.currentDirection + 90) % 360;
+    } else {
+      this.currentDirection = (360 + (this.currentDirection - 90)) % 360;
+    }
   }
 
   /** a getter for private propery of currentPosition

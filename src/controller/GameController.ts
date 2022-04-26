@@ -25,7 +25,7 @@ class GameController {
     const updateFrame = (milliseconds: number) => {
       // since page load
       this.p1.makeTurn(); // specific to a specific game controller
-      this.p2.makeTurn();
+      // this.p2.makeTurn();
       if (milliseconds - lastTime > 250) {
         this.world.update(1);
         lastTime += 250;

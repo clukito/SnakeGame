@@ -14,6 +14,11 @@ class Point {
     this.xcoord = x;
     this.ycoord = y;
   }
+  equals(p) {
+    if (this.xcoord === p && this.ycoord === p) {
+      // returns true
+    }
+  }
 
   /** a getter for x */
   public get x(): number {

@@ -8,6 +8,7 @@ class HumanPlayer extends Player {
 
   constructor(sc: SnakeController, handler: IInputHandler) {
     super(sc);
+    this.handler = handler;
   }
 
   makeTurn() {
