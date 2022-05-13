@@ -10,6 +10,11 @@ class GameController {
     this.world = wm;
   }
 
+  /**
+   * allows user to set players
+   * need at least 2 players to run the game
+   * can be either AI or human player
+   */
   set player1(p: Player) {
     this.p1 = p;
   }
@@ -17,20 +22,20 @@ class GameController {
     this.p2 = p;
   }
 
+  /**
+   * will actually run your game
+   * do it in app.tsx file
+   */
   run() {
     let lastTime = 0;
-    // function updateFrame(){
-    //   requestAnimationFrame(updateFrame)
-    // }
     const updateFrame = (milliseconds: number) => {
       // since page load
       this.p1.makeTurn(); // specific to a specific game controller
-      // this.p2.makeTurn();
+      this.p2.makeTurn();
       if (milliseconds - lastTime > 250) {
-        this.world.update(1);
+        this.world.update();
         lastTime += 250;
       }
-
       requestAnimationFrame(updateFrame);
     };
     requestAnimationFrame(updateFrame);

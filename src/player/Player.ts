@@ -1,9 +1,10 @@
 import SnakeController from "../controller/SnakeController";
 
 /**
+ * ABSTRACT - cannot be instantiated
+ *    derived classes provide the implementations of the methods
  * contains one or more pure virtual member functions.
- * a base class where derived classes provide the implementations of the methods.
- * the players can only turn his/her won snake. cant control the other snakes in the world
+ * the players can only turn his/her own snake. cant control the other snakes in the world
  * doesnt have a direct access to the snake class
  */
 abstract class Player {

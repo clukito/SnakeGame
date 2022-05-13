@@ -2,8 +2,11 @@ import Player from "./Player";
 import SnakeController from "../controller/SnakeController";
 import IInputHandler from "../controller/IInputHandler";
 
+/**
+ * implemets Player abstract class
+ * needs a makeTurn method
+ */
 class HumanPlayer extends Player {
-  // private sc: SnakeController;
   private handler: IInputHandler;
 
   constructor(sc: SnakeController, handler: IInputHandler) {
@@ -11,6 +14,7 @@ class HumanPlayer extends Player {
     this.handler = handler;
   }
 
+  /** connects handler and controller */
   makeTurn() {
     if (this.handler.madeLeftMove()) {
       this.snakeController.turnSnakeLeft();

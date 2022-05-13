@@ -1,5 +1,9 @@
 import IInputHandler from "./IInputHandler";
 
+/**
+ * implements interface - needs madeLeftMove, resetLeftMove, etc
+ * event listener -> https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key#Result
+ */
 class LRKeyInputHander implements IInputHandler {
   public wasLeftArrowPushed: boolean;
   public wasRightArrowPushed: boolean;
@@ -17,7 +21,10 @@ class LRKeyInputHander implements IInputHandler {
     });
   }
 
-  // made left move? return
+  /**
+   * returns the current state of booleans
+   * "hello, snake madeLeftMove? true!"
+   */
   madeLeftMove() {
     return this.wasLeftArrowPushed;
   }

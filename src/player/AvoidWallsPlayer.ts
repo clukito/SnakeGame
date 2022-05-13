@@ -1,12 +1,12 @@
 import Player from "./Player";
 
 /**
- * extends player's make turn method
+ * extends Player class - hv to hv a make turn method
  * no constructor bc it's useless - extends player's constuctor */
 class AvoidWallsPlayer extends Player {
   /**
    * abstract method from player class
-   * turns the snake automatically so it doesnt crash
+   * turns the snake automatically so it doesnt crash to a wall
    */
   makeTurn() {
     // left side

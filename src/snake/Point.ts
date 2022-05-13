@@ -1,4 +1,5 @@
 /**
+ * immutable 2D Point class
  * represents the position (coordinate system) of the snake
  */
 class Point {
@@ -7,6 +8,8 @@ class Point {
 
   /**
    * composition - this.currentPosition = new Point(0, 0)
+   *    - created inside the snake class definition
+   *    - will be useless without the snake class
    * @param x - x coordinate
    * @param y - y coordinate
    */
@@ -14,10 +17,14 @@ class Point {
     this.xcoord = x;
     this.ycoord = y;
   }
-  equals(p) {
-    if (this.xcoord === p && this.ycoord === p) {
-      // returns true
-    }
+
+  /**
+   * to compare if 2 (x,y)s are the same
+   * we need this because otherwise we are comparing memory locations, instead of coordinate
+   * @param p - (x,y)
+   */
+  equals(p: Point) {
+    return this.x === p.x && this.y === p.y;
   }
 
   /** a getter for x */

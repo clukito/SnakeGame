@@ -1,10 +1,11 @@
 import SnakeController from "./SnakeController";
 import Snake from "../snake/Snake";
+import Point from "../snake/Point";
 import WorldModel from "../canvas/WorldModel";
 
 describe("Snake Controller", function () {
-  let redSnake = new Snake("red");
-  let earth = new WorldModel(redSnake);
+  let redSnake = new Snake("red", new Point(20, 20), 1);
+  let earth = new WorldModel();
   let controller1 = new SnakeController(redSnake, earth);
 
   it("has a working turnSnakeLeft method", function () {

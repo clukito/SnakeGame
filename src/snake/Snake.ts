@@ -13,19 +13,25 @@ const myMap = new Map<number, string>([
  * each snake in the worldmodel will have this property
  */
 class Snake {
-  private currentPosition: Point;
+  private currentParts: Point[];
   private currentDirection: number;
   public color: string;
 
   /**
    * Create a snake
-   * snake's initial position is (20,20)
    * (0,0) is top left corner
    * snake's initial direction is facing down
-   * @param snakeColor - the color of the snake (universal)
+   * @param snakeColor
+   * @param startPosition - specify where you want to start (initial head position)
+   * @param size - how long you want to start your snake at - 1 is head only
    */
-  constructor(snakeColor: string, startPosition, size) {
-    this.currentPosition = new Point(10, 10); // composition
+
+  constructor(snakeColor: string, startPosition: Point, size: number) {
+    this.currentParts = [startPosition];
+    for (let i = 1; i < size; i++) {
+      // snake's body + head
+      this.currentParts.push(new Point(startPosition.x, startPosition.y + i));
+    }
     this.currentDirection = 270;
     this.color = snakeColor;
   }
@@ -33,33 +39,39 @@ class Snake {
   /**
    * moves the snake 1 box at a time
    * right = 0, front = 90, left = 180, down = 270
-   * top left is (0,0)
    */
   public move(box: number = 1) {
+    // start with the body first so that the [0] will have a replacement after
+    // the following body part will replace the position of the ones before it
+    for (let i = this.currentParts.length - 1; i > 0; i--) {
+      this.currentParts[i] = this.currentParts[i - 1];
+    }
+
     if (this.currentDirection === 0) {
-      this.currentPosition = new Point(
-        this.currentPosition.x + box,
-        this.currentPosition.y
+      this.currentParts[0] = new Point(
+        this.currentParts[0].x + box,
+        this.currentParts[0].y
       );
     } else if (this.currentDirection === 90) {
-      this.currentPosition = new Point(
-        this.currentPosition.x,
-        this.currentPosition.y - box // because top left is 0,0
+      this.currentParts[0] = new Point(
+        this.currentParts[0].x,
+        this.currentParts[0].y - box // because top left is 0,0
       );
     } else if (this.currentDirection === 180) {
-      this.currentPosition = new Point(
-        this.currentPosition.x - box,
-        this.currentPosition.y
+      this.currentParts[0] = new Point(
+        this.currentParts[0].x - box,
+        this.currentParts[0].y
       );
     } else if (this.currentDirection === 270) {
-      this.currentPosition = new Point(
-        this.currentPosition.x,
-        this.currentPosition.y + box // look at line 40
+      this.currentParts[0] = new Point(
+        this.currentParts[0].x,
+        this.currentParts[0].y + box
       );
     }
-  } // CHANGE THIS WHEN IT'S DOWN
+  }
 
-  /** turns the snake to the left */ turnLeft() {
+  /** turns the snake to the left */
+  turnLeft() {
     if (this.currentDirection === 270) {
       this.currentDirection = (360 + (this.currentDirection - 90)) % 360;
     } else {
@@ -76,10 +88,24 @@ class Snake {
     }
   }
 
+  /** to see if the snake collided with self/others */
+  didCollide(s: Snake) {
+    if (s === this) {
+      // is it you?
+      // if head = any part of your body - head
+      this.currentParts.slice(1).some((x) => this.currentParts[0].equals(x));
+    } else {
+      // if it's other snake
+      // if head = any part of that snake
+      s.currentParts.some((x) => this.currentParts[0].equals(x));
+    }
+  }
+
   /** a getter for private propery of currentPosition
+   * returns the position of the head
    * user 'cant' change the position of the user's snake */
   public get position() {
-    return this.currentPosition;
+    return this.currentParts[0];
   }
 
   /** a getter for private propery of currentDirection */

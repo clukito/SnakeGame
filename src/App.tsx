@@ -11,65 +11,18 @@ import AvoidWallsPlayer from "./player/AvoidWallsPlayer";
 import SnakeController from "./controller/SnakeController";
 import LRKeyInputHander from "./controller/LRKeyInputHandler";
 import GameController from "./controller/GameController";
+import Point from "./snake/Point";
 
 export default function App() {
   useEffect(() => {
-    // Canvas
-    // const gameContext = document.getElementById("game").getContext("2d");
-    // gameContext.fillStyle = "black"; // replace red with desired color
-    // gameContext.fillRect(5, 10, 15, 20);
-    // gameContext.fillRect(5, 40, 15, 20);
-
-    // const gameCanvas = document.getElementById("game") as HTMLCanvasElement;
-    // const ctx = gameCanvas.getContext("2d");
-    // const img = new Image(256, 256);
-    // img.src = checkerboard;
-    // img.onload = () => {
-    //   ctx?.drawImage(img, 0, 0, gameCanvas.width, gameCanvas.height);
-    // };
-
     // Snake
     document.getElementById("output")!.innerText = "OUTPUT:\n";
     display("hey snake ppl");
 
-    // Snake 1 - Green
-    // const snake1 = new Snake("Green");
-    // snake1.move(2);
-    // snake1.move();
-    // snake1.turnLeft();
-    // snake1.move(1);
-    // snake1.turnLeft();
-    // snake1.move(3);
-    // snake1.turnRight();
-    // snake1.move(2);
-    // snake1.move(1);
-
-    // display(
-    //   snake1.color,
-    //   "snake is facing",
-    //   snake1.direction,
-    //   "on position",
-    //   snake1.position
-    // );
-
-    // Snake 2 - Maroon
-    // const snake2 = new Snake("Maroon");
-    // snake2.turnRight();
-    // snake2.move(1);
-    // snake2.move(2);
-
-    // display(
-    //   snake2.color,
-    //   "snake is facing",
-    //   snake2.direction,
-    //   "on position",
-    //   snake2.position
-    // );
-
     // testing
-    const snake1 = new Snake("Green");
-    const snake2 = new Snake("Red");
-    const earth = new WorldModel(snake1);
+    const snake1 = new Snake("Green", new Point(20, 20), 1);
+    const snake2 = new Snake("Red", new Point(10, 10), 1);
+    const earth = new WorldModel();
     const control1 = new SnakeController(snake1, earth);
     const control2 = new SnakeController(snake2, earth);
     const view1 = new CanvasWorldView(2);
@@ -80,9 +33,11 @@ export default function App() {
     const game1 = new GameController(earth);
 
     game1.player1 = human1;
-    game1.player2 = aI1;
-    earth.view = view1;
-    earth.update(50);
+    game1.player2 = aI2;
+    earth.addSnake(snake1);
+    earth.addSnake(snake2);
+    earth.addView(view1);
+    earth.update();
 
     display(
       snake1.color,
